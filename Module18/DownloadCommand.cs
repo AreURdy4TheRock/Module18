@@ -13,14 +13,29 @@ namespace Module18
     {
         public string Url;
         public string OutputFilePath;
-        public async override void Run()
+        public override void Run()
         {
-            var youtube = new YoutubeClient();
-            var video = youtube.Videos.GetAsync(Url).Result;
-            var streamManifest = youtube.Videos.Streams.GetManifestAsync(video.Id).Result;
-            var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
-            Console.WriteLine("\nЗагрузка видео!");
-            await youtube.Videos.Streams.DownloadAsync(streamInfo, OutputFilePath);
+            _ = DownloadVideo();
+        }
+        public async Task DownloadVideo()
+        {
+            try
+            {
+                var youtube = new YoutubeClient();
+                var video = await youtube.Videos.GetAsync(Url);
+                var streamManifest = await youtube.Videos.Streams.GetManifestAsync(video.Id);
+                var streamInfo = streamManifest.GetMuxedStreams().GetWithHighestVideoQuality();
+                Console.WriteLine("\nЗагрузка видео!");
+                if (streamInfo != null)
+                {
+                    await youtube.Videos.Streams.DownloadAsync(streamInfo, OutputFilePath);
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
             
         }
         public override void Cancel()

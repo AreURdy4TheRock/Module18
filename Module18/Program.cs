@@ -12,8 +12,8 @@ namespace Module18
         {
             Console.OutputEncoding = Encoding.UTF8;
             //Ссылка на видео
-            var url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
-            var outPath = "F:\\Шарпей\\Module18\\Module18\\bin\\Debug\\video.mp4";
+            var url = "https://www.youtube.com/watch?v=DUrLB-8EBFs";
+            var outPath = "video.mp4";
             // создадим отправителя 
             var sender = new Sender();
             // создадим получателя 
@@ -25,10 +25,12 @@ namespace Module18
 
             // инициализация команды
             sender.SetCommand(getInfo);
+            sender.Run();
             sender.SetCommand(downloadVideo);
+            sender.Run();
 
             //  выполнение
-            sender.Run();
+
 
 
             Console.ReadKey();
