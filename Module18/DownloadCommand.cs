@@ -30,17 +30,12 @@ namespace Module18
                 {
                     await youtube.Videos.Streams.DownloadAsync(streamInfo, OutputFilePath);
                 }
+                Console.WriteLine("\nЗагрузка видео завершена!");
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-            
-            
-        }
-        public override void Cancel()
-        {
-
         }
         public DownloadCommand(string url, string outputFilePath)
         {

@@ -14,21 +14,14 @@ namespace Module18
         public override void Run()
         {
             var youtube = new YoutubeClient();
-
             var video = youtube.Videos.GetAsync(Url).Result;
-
             Console.WriteLine($"Название видео: {video.Title}");
             Console.WriteLine($"Описание: {video.Description}");
 
-        }
-        public override void Cancel()
-        {
         }
         public GetInfoCommand(string url)
         {
             Url = url;
         }
-
-
     }
 }

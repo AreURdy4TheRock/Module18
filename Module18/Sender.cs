@@ -14,17 +14,10 @@ namespace Module18
         {
             _command = command;
         }
-
         // Выполнить
         public void Run()
         {
             _command.Run();
-        }
-
-        // Отменить
-        public void Cancel()
-        {
-            _command.Cancel();
         }
     }
 }

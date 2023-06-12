@@ -23,15 +23,11 @@ namespace Module18
             //создадим команду скачивания видео
             var downloadVideo = new DownloadCommand(url, outPath);
 
-            // инициализация команды
+            // инициализация команды и выполнение
             sender.SetCommand(getInfo);
             sender.Run();
             sender.SetCommand(downloadVideo);
             sender.Run();
-
-            //  выполнение
-
-
 
             Console.ReadKey();
         }
